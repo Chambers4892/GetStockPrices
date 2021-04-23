@@ -1,0 +1,8 @@
+name,id,stock,above_below,value,note,current,trigger
+Komir,226030188733923328,WLT,below,300.0,,above,False
+Komir,226030188733923328,TCC,above,900.0,sell_now,below,False
+Komir,226030188733923328,WLT,below,300.0,time_to_buy,above,False
+Komir,226030188733923328,SYM,above,755.6,,below,False
+Komir,226030188733923328,SYM,below,755.5,,below,True
+Nightsfury,159282707149488129,FHG,below,600.0,,above,False
+Komir,226030188733923328,EVL,above,375.0,sell,below,False

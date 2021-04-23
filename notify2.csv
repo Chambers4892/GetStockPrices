@@ -1,0 +1,4 @@
+name,id,stock,above_below,value,note,current,trigger
+Komir,226030188733923328,WLT,below,300,,above,False
+Komir,226030188733923328,TCC,above,900,sell_now,below,False
+Komir,226030188733923328,WLT,below,300,time_to_buy,above,False

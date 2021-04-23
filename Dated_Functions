@@ -1,0 +1,31 @@
+async def get_stocks():
+    while True:
+        pTime = datetime.strftime(datetime.utcnow(), "%H:%M")
+        cTime = pTime     
+        while (cTime == pTime): 
+            #print(cTime)
+            fTime = datetime.utcnow()
+            cDate = datetime.date(fTime)
+            cTime = datetime.strftime(fTime, "%H:%M")
+            await asyncio.sleep(1)
+        try:
+            file = open("prices.csv", "x")
+            #print(file.read())
+            file.write("Date, Time, TSB, TCB, SYS, LAG, IOU, GRN, THS, YAZ, TCT, CNC, MSG, TMI, TCP, IIL, FHG, SYM, LSC, PRN, EWM, TCM, ELT, HRG, TGP, WSU, IST, BAG, EVL, MCS, WLT, TCC\n")
+            file.close()
+        except:
+            #print("Exists")
+            r = requests.get("https://api.torn.com/torn/?selections=stocks&key=" + os.getenv('API'))
+            print(str(cDate) + " " + str(cTime) + " " + str(r))
+            prices = ""
+            try:
+                for x in r.json()["stocks"]:
+                    prices = prices + ", " + str(r.json()["stocks"][x]["current_price"])
+            except:
+                prices = "Error: " + str(r)
+                #print(r.json())
+                    
+            file = open("prices.csv", "a")
+            file.write(str(cDate) + ", "  + str(cTime) + prices + "\n")
+            await bot_actions.send_message(client, prices)
+            file.close()
