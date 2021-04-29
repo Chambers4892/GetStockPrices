@@ -46,7 +46,8 @@ async def register(client, message):
         #Style name, id, stock, above_below, value, note, current, trigger
         id = message.author.id
         name = message.author.display_name
-        parsed_msg = message.content.split(' ')
+        parsed_msg = message.content.split(' ', 4)
+        parsed_msg[1] = parsed_msg[1].upper()
       
         if parsed_msg[1] in constants.acronym_list:
             if len(parsed_msg) > 3 and (parsed_msg[2] == "above" or parsed_msg[2] == "below") and parsed_msg[3].isnumeric():
@@ -165,3 +166,12 @@ async def error_handler(client, message, function):
     file.write(line)
     file.write(traceback.print_exc())
     file.close
+
+async def bug_report(client, message, function):
+    fTime = datetime.utcnow()
+    line = str(fTime) + message.content
+    print(line)
+    file = open("error.txt", "a")
+    file.write(line)
+    file.close
+    send_message(client, "226030188733923328", message.content)

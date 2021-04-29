@@ -1,4 +1,10 @@
 name,id,stock,above_below,value,note,current,trigger
-Komir,226030188733923328,WLT,below,300,,above,False
-Komir,226030188733923328,TCC,above,900,sell_now,below,False
-Komir,226030188733923328,WLT,below,300,time_to_buy,above,False
+Komir,226030188733923328,WLT,below,300.0,,above,False
+Komir,226030188733923328,TCC,above,900.0,sell_now,below,False
+Komir,226030188733923328,WLT,below,300.0,time_to_buy,above,False
+Komir,226030188733923328,SYM,above,755.6,,below,False
+Komir,226030188733923328,SYM,below,755.5,,below,True
+Komir,226030188733923328,EVL,above,375.0,sell,below,False
+Absinthian,566101151154700290,TCB,above,900.0,time_to_sell,below,False
+Absinthian,566101151154700290,SYS,below,655.0,time_to_buy,below,True
+Nightsfury,159282707149488129,FHG,below,550.0,,above,False
