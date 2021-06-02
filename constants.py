@@ -10,8 +10,8 @@ Commands:
 !notify     Add an alert
             [stock] [above/below] [value] [note (optional)]
 !list       List alerts
-!remove     In Progress... Message Komir#5770
-!bug        Send a free text bug report
+!remove     Remove all notifications
+!bug        Send a bug report, add text after to describe the problem.
 
 Example: 
 !notify TCB above 900 time to sell!

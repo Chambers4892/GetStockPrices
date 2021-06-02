@@ -7,6 +7,7 @@ from datetime import datetime
 import tabulate
 import numpy
 import constants
+import backend
 
 #SEND_ALERT---------------------------------------------------------
 async def send_alert(client, msg_txt):
@@ -48,10 +49,15 @@ async def register(client, message):
         name = message.author.display_name
         parsed_msg = message.content.split(' ', 4)
         parsed_msg[1] = parsed_msg[1].upper()
+        try:
+            val = float(parsed_msg[3])
+        except ValueError:
+            val = 0
       
         if parsed_msg[1] in constants.acronym_list:
-            if len(parsed_msg) > 3 and (parsed_msg[2] == "above" or parsed_msg[2] == "below") and parsed_msg[3].isnumeric():
-                line = name + "," + str(id) + ","
+            if len(parsed_msg) > 3 and (parsed_msg[2] == "above" or parsed_msg[2] == "below") and val > 0 :
+                line = str(backend.increment_counter()) + ","
+                line = line + name + "," + str(id) + ","
                 line = line + parsed_msg[1] + ","
                 line = line + parsed_msg[2] + ","
                 line = line + parsed_msg[3] + ","
@@ -80,17 +86,17 @@ async def list_notifications(client, message):
     pd.set_option('display.max_rows', None)
     pd.set_option('display.max_columns', None)
     pd.set_option('display.width', None)
-    pd.set_option('display.max_colwidth', -1)
+    pd.set_option('display.max_colwidth', None)
 
     auth_id = numpy.int64(message.author.id)
     file = open("notify.csv", "r")
     df = pd.read_csv(file)
     file.close()
     df = df[df['id'] == auth_id]
-    df = df[['name','stock', 'above_below', 'value', 'note']]
+    df = df[['notif_id','name','stock', 'above_below', 'value', 'note']]
     #print(tabulate(df, tablefmt="grid"))
     
-    await message.reply("```\n " + df.to_string() + " \n```")
+    await message.reply("```\n " + df.to_string(index=False) + " \n```")
 
 
 #DISPLAY STOCKS.CSV----------------------------------------
@@ -108,16 +114,27 @@ async def display_stocks(client, message):
 
 #REMOVE NOTIFICATIONS----------------------------------------
 async def remove(client, message):
-    await message.reply("This does not work yet.")
     parsed_msg = message.content.split(' ')
-    print(len(parsed_msg[1]))
     auth_id = numpy.int64(message.author.id)
     file = open("notify.csv", "r")
     df = pd.read_csv(file)
     file.close()
-    df = df[df['id'] != auth_id]
-    print(df.to_string())
-    #df.to_csv("notify.csv", index=False)
+    if parsed_msg[1].isnumeric():
+        drop_id = numpy.int64(parsed_msg[1])
+        to_drop = df[(df['id'] == auth_id) & (df['notif_id'] == drop_id)].index
+        await message.reply("Attempting to drop row " + str(drop_id) + "..")
+    elif parsed_msg[1].upper() == "ALL":
+        to_drop = df[(df['id'] == auth_id)].index
+        await message.reply("Attempting to delete notifications..")
+    elif parsed_msg[1].upper() in constants.acronym_list:
+        to_drop = df[(df['id'] == auth_id) & (df['stock'] == parsed_msg[1].upper())].index
+        await message.reply("Attempting to drop all " + parsed_msg[1].upper() + " rows..")
+    df = df.drop(to_drop)
+    #print(len(to_drop))
+    #print(df.to_string())
+    df.to_csv("notify.csv", index=False)
+    await message.reply(str(len(to_drop)) + " records dropped.")
+    
 
 
 #60 SECOND CHECK----------------------------------------
@@ -160,7 +177,7 @@ async def check_for_notifications(client, stock):
 
 async def error_handler(client, message, function):
     fTime = datetime.utcnow()
-    line = str(fTime) + " Error in " + function + " with: " + message.content
+    line = str(fTime) + " Error in " + function + " with: " + message.content + "\n"
     print(line)
     file = open("error.txt", "a")
     file.write(line)
@@ -169,7 +186,7 @@ async def error_handler(client, message, function):
 
 async def bug_report(client, message, function):
     fTime = datetime.utcnow()
-    line = str(fTime) + message.content
+    line = str(fTime) + message.content + "\n"
     print(line)
     file = open("error.txt", "a")
     file.write(line)

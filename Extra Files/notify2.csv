@@ -2,5 +2,4 @@ notif_id,name,id,stock,above_below,value,note,current,trigger
 1,Absinthian,566101151154700290,TCB,above,900.0,time_to_sell,above,True
 2,Absinthian,566101151154700290,SYS,below,655.0,time_to_buy,below,True
 3,Nightsfury,159282707149488129,FHG,below,550.0,,above,False
-10,RGiskard,330796887751917569,FHG,above,630.5,GTFO bro,below,False
-14,RGiskard,330796887751917569,FHG,above,628.0,,below,False
+4,RGiskard,330796887751917569,BAG,below,385.5,buy me?,above,False
