@@ -1,0 +1,12 @@
+```
+!List
+
+This will list all notifications you current have set
+
+The columns are notif_id (the index), name, stock, above or below, value, and a custom note.
+
+Example:
+notif_id  name  stock     above_below  value  note
+15        Komir TCB       below         1.0   NaN
+16        Komir TCC       above         99.0  NaN 
+```

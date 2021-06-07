@@ -14,3 +14,4 @@ def increment_counter():
     with open("global.json", "w") as jsonFile:
         json.dump(data, jsonFile)
     return result
+    

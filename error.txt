@@ -9,3 +9,8 @@ Start of file:
 2021-06-02 20:04:32.862615 Error in register with: !notify bag below 1
 2021-06-02 21:48:44.720278 Error in register with: !notify bag below 1
 2021-06-02 21:51:16.023511 Error in register with: !notify bag below 1
+2021-06-06 02:38:53.656195 Error in help_text with: !help test
+2021-06-06 02:41:20.060059 Error in help_text with: !help test
+2021-06-06 02:49:27.675831 Error in help_text with: !help test
+2021-06-06 02:50:11.384908 Error in help_text with: !help test
+2021-06-06 02:59:04.515781 Error in help_text with: !help

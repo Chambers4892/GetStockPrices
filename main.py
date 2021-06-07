@@ -13,6 +13,7 @@ from discord.ext import tasks
 #Custom imports
 import bot_actions
 import constants
+import help_func
 
 intents = discord.Intents.default()
 intents.members = True

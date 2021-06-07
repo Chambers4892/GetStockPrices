@@ -8,6 +8,8 @@ import tabulate
 import numpy
 import constants
 import backend
+import os
+import sys
 
 #SEND_ALERT---------------------------------------------------------
 async def send_alert(client, msg_txt):
@@ -105,7 +107,7 @@ async def display_stocks(client, message):
     pd.set_option('display.max_rows', None)
     pd.set_option('display.max_columns', None)
     pd.set_option('display.width', None)
-    pd.set_option('display.max_colwidth', -1)
+    pd.set_option('display.max_colwidth', None)
 
     file = open("stocks.csv", "r")
     df = pd.read_csv(file)
@@ -192,3 +194,23 @@ async def bug_report(client, message, function):
     file.write(line)
     file.close
     send_message(client, "226030188733923328", message.content)
+
+async def help_text(client, message):
+    try:
+        parsed = message.content.split(' ')
+        parsed.pop(0)
+        sub_path = "/help_docs"
+        if len(parsed) > 0:
+            for sub in parsed:
+                sub_path = sub_path + "/" + str(sub.lower())
+        if os.path.isdir(sys.path[0]+sub_path):
+            sub_path = sub_path + "/main"
+        try:
+            f = open(sys.path[0]+sub_path, "r")
+            text = f.read()
+            f.close()
+        except:
+            text = "That help file does not exist."
+        await message.reply(sub_path + "\n" + text)
+    except:
+         await bot_actions.error_handler(client, message, "help_text")

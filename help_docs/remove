@@ -1,0 +1,10 @@
+```
+!Remove
+
+This will remove notifications that are currently set.
+
+Examples:
+!remove 13    - Removes notification #13
+!remove TCB   - Removes all TCB notifications
+!remove all   - Removes all notifications
+```
