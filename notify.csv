@@ -1,8 +1,15 @@
 notif_id,name,id,stock,above_below,value,note,current,trigger
-1,Absinthian,566101151154700290,TCB,above,900.0,time_to_sell,above,True
-2,Absinthian,566101151154700290,SYS,below,655.0,time_to_buy,below,True
 3,Nightsfury,159282707149488129,FHG,below,550.0,,above,False
-10,RGiskard,330796887751917569,FHG,above,630.5,GTFO bro,below,False
-14,RGiskard,330796887751917569,FHG,above,628.0,,below,False
-15,Komir,226030188733923328,TCB,below,1.0,,above,False
-16,Komir,226030188733923328,TCC,above,99.0,,above,True
+141,TechDirec,429842168153374720,TGP,above,79.0,,above,True
+186,TechDirec,429842168153374720,FHG,above,610.0,,above,True
+212,TechDirec,429842168153374720,FHG,above,605.0,,above,True
+213,TechDirec,429842168153374720,EWM,above,240.0,,below,False
+214,TechDirec,429842168153374720,SYM,above,735.0,,below,False
+215,TechDirec,429842168153374720,TGP,below,79.0,,above,False
+216,TechDirec,429842168153374720,FHG,below,598.0,,above,False
+217,TechDirec,429842168153374720,SYM,below,727.0,,below,True
+228,TechDirec,429842168153374720,EWM,above,240.0,,below,False
+425,UncleTamir,460313033231826945,IST,above,325.0,time to sell!!!,below,False
+431,TechDirec,429842168153374720,EWM,below,240.0,,below,True
+432,UncleTamir,460313033231826945,GRN,below,215.0,time to buy!!!,below,True
+433,UncleTamir,460313033231826945,EWM,below,234.0,BUY NOW!!!,below,True

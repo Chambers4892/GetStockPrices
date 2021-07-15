@@ -1,0 +1,21 @@
+```
+!notify     
+
+Value Change
+Add an alert for desired price target
+[stock] [above/below] [value] [note (optional)]
+e.g. !notify TCB above 900
+
+OR
+
+Percent Change
+Add an alert for a price change within a certain duration
+[stock] [rises/drops] [x%] [duration (minutes)]
+e.g. !notify TCB rises 1% 100
+
+OR
+
+Global Change (all stock movements)
+[rises/drops] [x%] [duration (minutes)]
+e.g. !notify rises 1% 100
+```
